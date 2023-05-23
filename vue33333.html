@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scaleable=no">
+    <title>动漫角色投票</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="vue实验3的style.css">
+<style type="text/css">
+    #alldivfather{
+        width: auto;
+        height: auto;
+        vertical-align: middle;
+    }
+    #p1{
+        font-style: italic;
+        color: rgb(250, 24, 243);
+        font-size: 3em;
+        margin-left: 40%;
+        font-weight: lighter;
+        margin-bottom: 2rem;
+        position: relative;
+        margin-top: 1em;
+    }
+    #p2{
+        font-style: italic;
+        color: rgb(236, 0, 240);
+        font-size: 1em;
+        position: relative;
+        margin-left: 46%;
+        font-weight: normal ;
+        margin-top: 0.5em;
+        margin-bottom: 0;
+        opacity: 0.5;
+        display:inline-block;
+    }
+
+    .left1{
+        width: 20%;
+        height: 45rem;
+        /* background-color: red; */
+        /* display:inline-block; */
+        margin-left: 13em;
+        margin-top: 0px;
+        z-index: 1;
+        float: left;
+        
+    }
+    .left2{
+        width: 20%;
+        height: 45em;
+        /* background-color: rgb(98, 255, 0); */
+        /* display:inline-block;行内显示方式 */
+        z-index: 1;
+        float: left;
+    } 
+    .right3{
+        width: 20%;
+        height: 45em;
+        /* background-color: rgb(0, 255, 225); */
+        /* display:inline-block;行内显示方式 */
+        z-index: 1;
+        float: left;
+
+    }
+    .right4{
+        width: 20%;
+        height: 45em;
+        /* background-color: rgb(255, 0, 183); */
+        /* display:inline-block;行内显示方式 */
+        z-index: 1;
+        float: left;
+    }
+   #bc1{
+    background-image: url("bk4.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+   
+   }
+   img{
+    width: 100%;
+    height: 100%;
+    border-radius:2em;
+   }
+   h1{
+    position: absolute;
+    color: #fff;
+   }
+   .footer{
+    margin-top: 50em ;
+    margin-left: 45%;
+    float: left;
+    position:absolute;
+   }
+</style>
+
+<script type="text/javascript">
+
+    function $(id){ 
+        return document.getElementById(id);
+    }
+    function mouseOver(){
+        $('三月七').src="7may2.jpg";
+    }
+    function mouseOut(){
+        $('三月七').src="7may.jpg";
+    }
+
+    function mouseOver1(){
+        $('布洛尼亚').src="bl12.jpg";
+    }
+    function mouseOut1(){
+        $('布洛尼亚').src="bl.jpg";
+    }
+
+
+    function mouseOver2(){
+        $('姬子').src="jz2.jpg";
+    }
+    function mouseOut2(){
+        $('姬子').src="jz.jpg";
+    }
+
+    function mouseOver3(){
+        $('黑塔').src="ht2.jpg";
+    }
+    function mouseOut3(){
+        $('黑塔').src="ht.jpg";
+    }
+</script>
+</head>
+<body id="bc1">
+<div id="app">
+    
+   <div class="container">
+    <div class="box">
+        <p style="--i:1">动</p>
+        <p style="--i:2">慢</p>
+        <p style="--i:3">人</p>
+        <p style="--i:4">气</p>
+        <p style="--i:5">角</p>
+        <p style="--i:6">色</p>
+        <p style="--i:7">投</p>
+        <p style="--i:8">票</p>
+    </div>
+   </div>
+
+
+<div class="left1" >
+    <h1>三月七</h1>
+    <img src="7may.jpg" id="三月七"  onmouseover="mouseOver()" onmouseout="mouseOut()"  @click="onClick('三月七')">
+</div>
+
+<div class="left2">
+    <h1>布洛尼亚</h1>
+    <img src="bl.jpg" id="布洛尼亚" onmouseover="mouseOver1()" onmouseout="mouseOut1()" @click="onClick1('布洛尼亚')">
+</div>
+<div class="right3">
+    <h1>姬子</h1>
+    <img src="jz.jpg" id="姬子" onmouseover="mouseOver2()" onmouseout="mouseOut2()" @click="onClick2('姬子')">
+</div>
+<div class="right4">
+    <h1>黑塔</h1>
+    <img src="ht.jpg" id="黑塔" onmouseover="mouseOver3()" onmouseout="mouseOut3()" @click="onClick3('黑塔')">
+</div>
+
+<div class="footer">
+    <p  >角色:三月七  目前有{{count}}张票</p>
+    <p  >角色:布洛尼亚  目前有{{count1}}张票</p>
+    <p  >角色:姬子  目前有{{count2}}张票</p>
+    <p  >角色:黑塔  目前有{{count3}}张票</p>
+    <p id="p2">开发byCJH</p>
+</div>
+</div>
+
+    <script>
+        alert("请点击角色图片给喜欢的角色投票吧!");
+    </script>
+
+    <script>
+        Vue.component('greeting')
+            var vm = new Vue({
+            el:'#app',
+            data(){
+                return{
+                    count:0,
+                    count1:0,
+                    count2:0,
+                    count3:0,
+                    list: ['三月七'],
+                    records:[]
+                }
+            },
+            methods:{
+                onClick(name,count){
+                    if(this.count < 100){
+                    this.count++;
+                    }
+                    this.records.push(name,count);
+                },
+                onClick1(name,count1){
+                    if(this.count1 < 100){
+                    this.count1++;
+                    }
+                    this.records.push(name,count1);
+                },
+                onClick2(name,count2){
+                    if(this.count2 < 100){
+                    this.count2++;
+                    }
+                    this.records.push(name,count2);
+                },
+                onClick3(name,count3){
+                    if(this.count3 < 100){
+                    this.count3++;
+                    }
+                    this.records.push(name,count3);
+                }
+                }
+            })
+
+    </script>
+</body>
+</html>
